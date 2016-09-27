@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PreviousMsgs from './PreviousMsgs'
 import CurrentMsgs from './CurrentMsgs'
 import SelectLoginUser from './SelectLoginUser'
-
+import _ from 'lodash'
 class App extends Component {
 
   constructor (props) {
@@ -90,7 +90,6 @@ class App extends Component {
     }
   }
   addMsg (fromId, toId, text) {
-    console.log('fromId, toId, text', fromId, toId, text);
     this.state.msgs.push({dateTime: new Date(), text: text, from: fromId, to: toId})
     this.setState({msgs: this.state.msgs})
   }
@@ -106,6 +105,25 @@ class App extends Component {
     var myData = this.state.friends.filter((f) => {return f.id === this.state.whoIam})[0]
     var currentFriendData = this.state.friends.filter((f) => {return f.id === this.state.currentFriend})[0]
 
+    var myMsgsDetails = msgsIsend.map((m) => {
+      return {
+        img: myData.img,
+        name: myData.name,
+        text: m.text,
+        dateTime: m.dateTime
+      }
+    })
+    var receivedMsgsDetails = msgsIrecived.map((m) => {
+      return {
+        img: currentFriendData.img,
+        name: currentFriendData.name,
+        text: m.text,
+        dateTime: m.dateTime
+      }
+    })
+    var tempAllMsgs = _.concat(myMsgsDetails, receivedMsgsDetails)
+    var allMsgs = _.sortBy(tempAllMsgs, (m) => { return m.dateTime})
+
     return (
       <div>
         <SelectLoginUser
@@ -116,13 +134,13 @@ class App extends Component {
           friends={this.state.friends}
           msgs={this.state.msgs}
           currentFriendId={currentFriendData.id}
+          whoIam={this.state.whoIam}
           changeCurrentFriend={this.changeCurrentFriend.bind(this)}
         />
         <CurrentMsgs
           myData={myData}
           currentFriendData={currentFriendData}
-          msgsIrecived={msgsIrecived}
-          msgsIsend={msgsIsend}
+          allMsgs={allMsgs}
           addMsg={this.addMsg.bind(this)}
         />
       </div>

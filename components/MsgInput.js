@@ -6,7 +6,6 @@ class MsgInput extends Component {
     super(props)
   }
   handleReplyClick () {
-    console.log('msgInput');
     this.props.addMsg(
       this.props.fromId,
       this.props.toId,

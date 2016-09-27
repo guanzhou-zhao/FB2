@@ -13,19 +13,20 @@ class FriendMsg extends Component {
     var selected = {
       backgroundColor: '#6D84B4'
     }
+    var {friend, currentFriendId, latestMsg, sender} = this.props
     return (
       <div
-        style={this.props.friend.id === this.props.currentFriendId ? selected : null}
+        style={friend.id === currentFriendId ? selected : null}
         onClick={this.handleClick.bind(this)}>
         <div>
-          <img src={this.props.friend.img}/>
+          <img src={friend.img}/>
         </div>
         <div>
           <div>
-            <h3>{this.props.friend.name}</h3>
-            <p>{dateFormat(this.props.msgs[0].dateTime, 'h:MM TT')}</p>
+            <h3>{friend.name}</h3>
+            <p>{latestMsg && dateFormat(latestMsg.dateTime, 'h:MM TT')}</p>
           </div>
-          <p>{this.props.msgs[0].text}</p>
+          <p>{latestMsg ? `${sender}:  ${latestMsg.text}` : null}</p>
         </div>
       </div>
     )
