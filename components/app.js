@@ -75,13 +75,13 @@ class App extends Component {
           dateTime: new Date(2016, 8, 27, 7, 0),
           text: "Hey, what's happening?",
           from: 3,
-          to: 4
+          to: 2
         },
         {
           dateTime: new Date(),
           text: "Hey, what's happening?",
           from: 5,
-          to: 1
+          to: 2
         }
       ],
       whoIam: 2,
