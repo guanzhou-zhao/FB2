@@ -36,43 +36,43 @@ class App extends Component {
       ],
       msgs: [
         {
-          dateTime: new Date(2016, 9, 27, 7, 0),
+          dateTime: new Date(2016, 8, 27, 7, 0),
           text: "Hey, what's happening?",
           from: 1,
           to: 2
         },
         {
-          dateTime: new Date(2016, 9, 27, 7, 10),
+          dateTime: new Date(2016, 8, 27, 7, 10),
           text: " Who is this?",
           from: 2,
           to: 1
         },
         {
-          dateTime: new Date(2016, 9, 27, 7, 20),
+          dateTime: new Date(2016, 8, 27, 7, 20),
           text: "It's Ben!",
           from: 2,
           to: 1
         },
         {
-          dateTime: new Date(2016, 9, 27, 7, 30),
+          dateTime: new Date(2016, 8, 27, 7, 30),
           text: "Ben who?",
           from: 1,
           to: 2
         },
         {
-          dateTime: new Date(2016, 9, 27, 7, 40),
+          dateTime: new Date(2016, 8, 27, 7, 40),
           text: "Ben, your pair programmer!",
           from: 2,
           to: 1
         },
         {
-          dateTime: new Date(2016, 9, 27, 7, 50),
+          dateTime: new Date(2016, 8, 27, 7, 50),
           text: "OH HEY BEN!!!!!!!!!!!!! Nice to hear from you! How's your day going buddy!",
           from: 1,
           to: 2
         },
         {
-          dateTime: new Date(2016, 9, 27, 7, 0),
+          dateTime: new Date(2016, 8, 27, 7, 0),
           text: "Hey, what's happening?",
           from: 3,
           to: 4
@@ -88,7 +88,11 @@ class App extends Component {
       currentFriend: 1
     }
   }
-
+  addMsg (fromId, toId, text) {
+    console.log('fromId, toId, text', fromId, toId, text);
+    this.state.msgs.push({dateTime: new Date(), text: text, from: fromId, to: toId})
+    this.setState({msgs: this.state.msgs})
+  }
   render () {
     var msgsIsend = this.state.msgs.filter((f) => {return f.from === this.state.whoIam && f.to === this.state.currentFriend})
     var msgsIrecived = this.state.msgs.filter((f) => {return f.to === this.state.whoIam && f.from === this.state.currentFriend})
@@ -97,7 +101,10 @@ class App extends Component {
 
     return (
       <div>
-        <CurrentMsgs myData={myData} currentFriendData={currentFriendData} msgsIrecived={msgsIrecived} msgsIsend={msgsIsend}/>
+        <PreviousMsgs friends={this.state.friends} msgs={this.state.msgs}/>
+        <CurrentMsgs myData={myData} currentFriendData={currentFriendData} msgsIrecived={msgsIrecived} msgsIsend={msgsIsend}
+          addMsg={this.addMsg.bind(this)}
+          />
       </div>
 
     )
@@ -105,5 +112,4 @@ class App extends Component {
 
 }
 
-// <PreviousMsgs friends={this.state.friends} msgs={this.state.msgs}/>
 export default App

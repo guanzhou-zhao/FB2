@@ -18,8 +18,11 @@ class PreviousMsgs extends Component {
     });
   }
   render () {
+    let left = {
+      float: 'left'
+    }
     return (
-      <div>
+    <div style={left}>
         <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput.bind(this)}/>
         <FriendList friends={this.props.friends} msgs={this.props.msgs} filterText={this.state.filterText}/>
       </div>
