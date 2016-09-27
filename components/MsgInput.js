@@ -5,7 +5,7 @@ class MsgInput extends Component {
   constructor (props) {
     super(props)
   }
-  handleChange () {
+  handleReplyClick () {
     console.log('msgInput');
     this.props.addMsg(
       this.props.fromId,
@@ -18,7 +18,7 @@ class MsgInput extends Component {
     return (
       <div>
         <input type="text" ref="textInput" name="MsgInput"/>
-        <input onClick={this.handleChange.bind(this)} type="submit" value="Reply"/>
+        <input onClick={this.handleReplyClick.bind(this)} type="submit" value="Reply"/>
       </div>
     )
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PreviousMsgs from './PreviousMsgs'
 import CurrentMsgs from './CurrentMsgs'
+import SelectLoginUser from './SelectLoginUser'
 
 class App extends Component {
 
@@ -96,6 +97,9 @@ class App extends Component {
   changeCurrentFriend(friendId) {
     this.setState({currentFriend: friendId})
   }
+  changeLoinUser(userId) {
+    this.setState({whoIam: userId})
+  }
   render () {
     var msgsIsend = this.state.msgs.filter((f) => {return f.from === this.state.whoIam && f.to === this.state.currentFriend})
     var msgsIrecived = this.state.msgs.filter((f) => {return f.to === this.state.whoIam && f.from === this.state.currentFriend})
@@ -104,11 +108,23 @@ class App extends Component {
 
     return (
       <div>
-        <PreviousMsgs friends={this.state.friends} msgs={this.state.msgs} currentFriendId={currentFriendData.id}
-        changeCurrentFriend={this.changeCurrentFriend.bind(this)}/>
-        <CurrentMsgs myData={myData} currentFriendData={currentFriendData} msgsIrecived={msgsIrecived} msgsIsend={msgsIsend}
+        <SelectLoginUser
+          allFriends={this.state.friends}
+          changeLoinUser={this.changeLoinUser.bind(this)}
+          whoIam={this.state.whoIam}/>
+        <PreviousMsgs
+          friends={this.state.friends}
+          msgs={this.state.msgs}
+          currentFriendId={currentFriendData.id}
+          changeCurrentFriend={this.changeCurrentFriend.bind(this)}
+        />
+        <CurrentMsgs
+          myData={myData}
+          currentFriendData={currentFriendData}
+          msgsIrecived={msgsIrecived}
+          msgsIsend={msgsIsend}
           addMsg={this.addMsg.bind(this)}
-          />
+        />
       </div>
 
     )

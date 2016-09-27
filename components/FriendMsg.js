@@ -14,18 +14,20 @@ class FriendMsg extends Component {
       backgroundColor: '#6D84B4'
     }
     return (
-    <div style={this.props.friend.id === this.props.currentFriendId ? selected : null} onClick={this.handleClick.bind(this)}>
-      <div>
-        <img src={this.props.friend.img}/>
-      </div>
-      <div>
+      <div
+        style={this.props.friend.id === this.props.currentFriendId ? selected : null}
+        onClick={this.handleClick.bind(this)}>
         <div>
-          <h3>{this.props.friend.name}</h3>
-          <p>{dateFormat(this.props.msgs[0].dateTime, 'h:MM TT')}</p>
+          <img src={this.props.friend.img}/>
         </div>
-      <p>{this.props.msgs[0].text}</p>
-    </div>
-  </div>
+        <div>
+          <div>
+            <h3>{this.props.friend.name}</h3>
+            <p>{dateFormat(this.props.msgs[0].dateTime, 'h:MM TT')}</p>
+          </div>
+          <p>{this.props.msgs[0].text}</p>
+        </div>
+      </div>
     )
   }
 }
