@@ -7,15 +7,15 @@ class FriendList extends Component {
     super(props)
     console.log(this.props.friends)
     console.log(this.props.msgs)
+    console.log(this.props.filterText);
   }
-
   render () {
+    var filterResult = this.props.friends.filter((f) => {
+      return f.name.indexOf(this.props.filterText) > -1
+    })
     return (
       <div>
-        <h1>FriendList</h1>
-        <ul>
-          {this.props.friends.map((f) => {return <FriendMsg friend={f} />})}
-        </ul>
+        {filterResult.map((f, index) => {return <FriendMsg friend={f} msgs={this.props.msgs} key={index}/>})}
       </div>
     )
   }

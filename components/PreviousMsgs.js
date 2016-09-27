@@ -8,13 +8,20 @@ class PreviousMsgs extends Component {
     super(props)
     console.log(this.props.friends);
     console.log(this.props.msgs);
+    this.state = {
+      filterText: ''
+    }
   }
-
+  handleUserInput (filterText) {
+    this.setState({
+      filterText: filterText
+    });
+  }
   render () {
     return (
       <div>
-        <SearchBar />
-        <FriendList friends={this.props.friends} msgs={this.props.msgs} />
+        <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput.bind(this)}/>
+        <FriendList friends={this.props.friends} msgs={this.props.msgs} filterText={this.state.filterText}/>
       </div>
     )
   }

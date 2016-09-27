@@ -36,33 +36,68 @@ class App extends Component {
       ],
       msgs: [
         {
-          dataTime: new Date(),
+          dateTime: new Date(2016, 9, 27, 7, 0),
           text: "Hey, what's happening?",
           from: 1,
           to: 2
         },
         {
-          dataTime: new Date(),
+          dateTime: new Date(2016, 9, 27, 7, 10),
+          text: " Who is this?",
+          from: 2,
+          to: 1
+        },
+        {
+          dateTime: new Date(2016, 9, 27, 7, 20),
+          text: "It's Ben!",
+          from: 2,
+          to: 1
+        },
+        {
+          dateTime: new Date(2016, 9, 27, 7, 30),
+          text: "Ben who?",
+          from: 1,
+          to: 2
+        },
+        {
+          dateTime: new Date(2016, 9, 27, 7, 40),
+          text: "Ben, your pair programmer!",
+          from: 2,
+          to: 1
+        },
+        {
+          dateTime: new Date(2016, 9, 27, 7, 50),
+          text: "OH HEY BEN!!!!!!!!!!!!! Nice to hear from you! How's your day going buddy!",
+          from: 1,
+          to: 2
+        },
+        {
+          dateTime: new Date(2016, 9, 27, 7, 0),
           text: "Hey, what's happening?",
           from: 3,
           to: 4
         },
         {
-          dataTime: new Date(),
+          dateTime: new Date(),
           text: "Hey, what's happening?",
           from: 5,
           to: 1
         }
-      ]
+      ],
+      whoIam: 2,
+      currentFriend: 1
     }
   }
 
   render () {
+    var msgsIsend = this.state.msgs.filter((f) => {return f.from === this.state.whoIam && f.to === this.state.currentFriend})
+    var msgsIrecived = this.state.msgs.filter((f) => {return f.to === this.state.whoIam && f.from === this.state.currentFriend})
+    var myData = this.state.friends.filter((f) => {return f.id === this.state.whoIam})[0]
+    var currentFriendData = this.state.friends.filter((f) => {return f.id === this.state.currentFriend})[0]
+
     return (
       <div>
-        <h1>Welcome to {this.props.name}</h1>
-        <PreviousMsgs friends={this.state.friends} msgs={this.state.msgs}/>
-        <CurrentMsgs friends={this.state.friends} msgs={this.state.msgs}/>
+        <CurrentMsgs myData={myData} currentFriendData={currentFriendData} msgsIrecived={msgsIrecived} msgsIsend={msgsIsend}/>
       </div>
 
     )
@@ -70,4 +105,5 @@ class App extends Component {
 
 }
 
+// <PreviousMsgs friends={this.state.friends} msgs={this.state.msgs}/>
 export default App

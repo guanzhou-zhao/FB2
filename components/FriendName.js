@@ -7,9 +7,8 @@ class FriendName extends Component {
   }
 
   render () {
-    return <h1>FriendName</h1>
+    return <h2>{this.props.currentFriendName}</h2>
   }
-
 }
 
 export default FriendName
