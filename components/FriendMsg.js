@@ -6,10 +6,15 @@ class FriendMsg extends Component {
   constructor (props) {
     super(props)
   }
-
+  handleClick () {
+    this.props.changeCurrentFriend(this.props.friend.id)
+  }
   render () {
+    var selected = {
+      backgroundColor: '#6D84B4'
+    }
     return (
-    <div>
+    <div style={this.props.friend.id === this.props.currentFriendId ? selected : null} onClick={this.handleClick.bind(this)}>
       <div>
         <img src={this.props.friend.img}/>
       </div>

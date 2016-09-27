@@ -10,27 +10,27 @@ class App extends Component {
       friends: [
         {
           id: 1,
-          img: 'http://placekitten.com/50/50',
+          img: 'https://avatars1.githubusercontent.com/u/19282953?v=3&s=120',
           name: 'Ben'
         },
         {
           id: 2,
-          img: 'http://placekitten.com/50/50',
+          img: 'https://avatars1.githubusercontent.com/u/19864300?v=3&s=120',
           name: 'Jock'
         },
         {
           id: 3,
-          img: 'http://placekitten.com/50/50',
+          img: 'https://avatars0.githubusercontent.com/u/3063500?v=3&s=120',
           name: 'Peter'
         },
         {
           id: 4,
-          img: 'http://placekitten.com/50/50',
+          img: 'https://avatars3.githubusercontent.com/u/20085843?v=3&s=120',
           name: 'Lisa'
         },
         {
           id: 5,
-          img: 'http://placekitten.com/50/50',
+          img: 'https://avatars3.githubusercontent.com/u/20106637?v=3&s=120',
           name: 'Brady'
         }
       ],
@@ -93,6 +93,9 @@ class App extends Component {
     this.state.msgs.push({dateTime: new Date(), text: text, from: fromId, to: toId})
     this.setState({msgs: this.state.msgs})
   }
+  changeCurrentFriend(friendId) {
+    this.setState({currentFriend: friendId})
+  }
   render () {
     var msgsIsend = this.state.msgs.filter((f) => {return f.from === this.state.whoIam && f.to === this.state.currentFriend})
     var msgsIrecived = this.state.msgs.filter((f) => {return f.to === this.state.whoIam && f.from === this.state.currentFriend})
@@ -101,7 +104,8 @@ class App extends Component {
 
     return (
       <div>
-        <PreviousMsgs friends={this.state.friends} msgs={this.state.msgs}/>
+        <PreviousMsgs friends={this.state.friends} msgs={this.state.msgs} currentFriendId={currentFriendData.id}
+        changeCurrentFriend={this.changeCurrentFriend.bind(this)}/>
         <CurrentMsgs myData={myData} currentFriendData={currentFriendData} msgsIrecived={msgsIrecived} msgsIsend={msgsIsend}
           addMsg={this.addMsg.bind(this)}
           />

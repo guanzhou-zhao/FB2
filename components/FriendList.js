@@ -15,7 +15,7 @@ class FriendList extends Component {
     })
     return (
       <div>
-        {filterResult.map((f, index) => {return <FriendMsg friend={f} msgs={this.props.msgs} key={index}/>})}
+        {filterResult.map((f, index) => {return <FriendMsg friend={f} msgs={this.props.msgs} key={index} currentFriendId={this.props.currentFriendId} changeCurrentFriend={this.props.changeCurrentFriend}/>})}
       </div>
     )
   }
