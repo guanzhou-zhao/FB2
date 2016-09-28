@@ -10,12 +10,17 @@ class CurrentMsgs extends Component {
 }
   render () {
     return (
-      <div>
-        <FriendName currentFriendName={this.props.currentFriendData.name}/>
-        <MsgHistory myData={this.props.myData} currentFriendData={this.props.currentFriendData} allMsgs={this.props.allMsgs}
-          />
-        <MsgInput addMsg={this.props.addMsg} fromId={this.props.myData.id}
-          toId={this.props.currentFriendData.id}/>
+      <div style={{float: 'right'}}>
+        <FriendName currentFriendName={this.props.currentFriendData.name}
+        />
+        <MsgHistory
+          myData={this.props.myData} currentFriendData={this.props.currentFriendData} allMsgs={this.props.allMsgs}
+        />
+        <MsgInput
+          addMsg={this.props.addMsg}
+          fromId={this.props.myData.id}
+          toId={this.props.currentFriendData.id}
+        />
       </div>
     )
   }

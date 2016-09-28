@@ -123,26 +123,29 @@ class App extends Component {
     })
     var tempAllMsgs = _.concat(myMsgsDetails, receivedMsgsDetails)
     var allMsgs = _.sortBy(tempAllMsgs, (m) => { return m.dateTime})
-
+    var clear = {}
     return (
       <div>
         <SelectLoginUser
           allFriends={this.state.friends}
           changeLoinUser={this.changeLoinUser.bind(this)}
-          whoIam={this.state.whoIam}/>
-        <PreviousMsgs
-          friends={this.state.friends}
-          msgs={this.state.msgs}
-          currentFriendId={currentFriendData.id}
           whoIam={this.state.whoIam}
-          changeCurrentFriend={this.changeCurrentFriend.bind(this)}
         />
-        <CurrentMsgs
-          myData={myData}
-          currentFriendData={currentFriendData}
-          allMsgs={allMsgs}
-          addMsg={this.addMsg.bind(this)}
-        />
+        <div style={{clear: 'both'}}>
+          <PreviousMsgs
+            friends={this.state.friends}
+            msgs={this.state.msgs}
+            currentFriendId={currentFriendData.id}
+            whoIam={this.state.whoIam}
+            changeCurrentFriend={this.changeCurrentFriend.bind(this)}
+          />
+          <CurrentMsgs
+            myData={myData}
+            currentFriendData={currentFriendData}
+            allMsgs={allMsgs}
+            addMsg={this.addMsg.bind(this)}
+          />
+        </div>
       </div>
 
     )

@@ -12,10 +12,11 @@ class FriendList extends Component {
     var filterResult = friends.filter((f) => {
       return f.name.indexOf(filterText) > -1 && f.id !== whoIam
     })
+    var orderedResult = sortFriendsByMsgDate(filterResult, msgs, whoIam)
     return (
       <div>
         {
-          filterResult.map((f, index) => {
+          orderedResult.map((f, index) => {
             return (
               <FriendMsg
                 friend={f}
@@ -33,6 +34,17 @@ class FriendList extends Component {
     </div>
   )
 }
+}
+function sortFriendsByMsgDate(friends, msgs, whoIam) {
+  var sortedFriends = _.sortBy(friends, (f) => {
+    var latestMsg = getLatestMessage(msgs, f.id, whoIam)
+    return latestMsg ? latestMsg.dateTime : new Date(0)
+  })
+  return sortedFriends.reverse()
+}
+function getFriendWithLatestMsg(latestMsg, f) {
+  f.latestMsg = latestMsg
+  return f
 }
 function getSender(msg, friends, whoIam) {
   var senderName

@@ -24,7 +24,7 @@ class FriendMsg extends Component {
         <div>
           <div>
             <h3>{friend.name}</h3>
-            <p>{latestMsg && dateFormat(latestMsg.dateTime, 'h:MM TT')}</p>
+            <p>{latestMsg && dateFormat(latestMsg.dateTime, 'mmmm dS yyyy h:MM:ss TT')}</p>
           </div>
           <p>{latestMsg ? `${sender}:  ${latestMsg.text}` : null}</p>
         </div>
